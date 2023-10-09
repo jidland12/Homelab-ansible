@@ -26,6 +26,11 @@
     - name: Mount NFS share
       mount:
         name: "/plexmedia"
+        fstype: nfs
+        opts: rw,hard,intr
         state: mounted
+        dump: 0
+        passno: 0
+
 
 
