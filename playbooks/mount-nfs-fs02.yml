@@ -1,0 +1,31 @@
+---
+- name: Install and add an NFS share
+  hosts: all
+  become: true
+
+   tasks:
+    - name: Install NFS client
+      apt:
+        name: nfs-common
+        state: present
+
+    - name: Create mount point
+      file:
+        path: "/plexmedia"
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
+
+    - name: Add NFS share to fstab
+      lineinfile:
+        path: /etc/fstab
+        line: "10.10.4.1:/mnt/DS2246/fs02-MEDIA /plexmedia nfs rw,hard,intr 0 0"
+        state: present
+
+    - name: Mount NFS share
+      mount:
+        name: "/plexmedia"
+        state: mounted
+
+
