@@ -3,7 +3,7 @@
   hosts: all
   become: true
 
-   tasks:
+  tasks:
     - name: Install NFS client
       apt:
         name: nfs-common
