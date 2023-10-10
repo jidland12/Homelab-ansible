@@ -11,12 +11,12 @@
     - name: "Clone VM Template"
       community.general.proxmox_kvm:
         api_user: root@pam
-        api_password: {{ pm_passwd }}
+        api_password: "{{ pm_passwd }}"
         api_host: "srv01"
         clone: "Ubuntu-cloudinit-template"
-        name: {{ vm_name }}
+        name: "{{ vm_name }}"
         newid: {{ vm_id }}
-        node: {{ vm_node }}
+        node: "{{ vm_node }}"
         storage: Ceph-pool
         ipconfig:
           ipconfig0: "ip={{ ip_address }}/16, gw=10.10.0.1"
