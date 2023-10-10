@@ -15,7 +15,7 @@
         api_host: "srv01"
         clone: "Ubuntu-cloudinit-template"
         name: "{{ vm_name }}"
-        newid: "{{ vm_id | int }}""
+        newid: "{{ vm_id | int }}"
         node: "{{ vm_node }}"
         storage: Ceph-pool
         ipconfig:
