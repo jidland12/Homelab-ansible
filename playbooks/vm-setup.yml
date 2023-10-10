@@ -1,8 +1,3 @@
-# Step 1 Clone VM 
-# Step 2 Set Cloud Init Data
-# step 3 power on VM
-# step 4 connect to new VM 
-# step 5 Install initial configurations
 ---
 - name: "Create new VM from Clone"
   hosts: hyper
@@ -49,14 +44,22 @@
       connection: local
       shell: "ssh-keyscan -H {{ ip_address }} >> /home/webadmin/.ssh/known_hosts"
 
-    - name: "test ping"
+    - name: "Ping the VM to ensure access"
       ping:
-    
 
+    - name: Update apt repo and cache on VM
+      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
 
+    - name: Upgrade all packages on VM
+      apt: upgrade=dist force_apt_get=yes
 
+    - name: Install Qemu Guest Agent
+      apt:
+        name: qemu-guest-agent
+        state: present
 
-
-# - name: Write the new ec2 instance host key to known hosts
-# connection: local
-# shell: "ssh-keyscan -H {{ inventory_hostname }} >> ~/.ssh/known_hosts"
+    - name: Enable and Start Qemu Guest Agent
+      service:
+        name: "qemu-guest-agent.service"
+        enabled: true
+        state: started
