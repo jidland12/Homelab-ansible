@@ -51,9 +51,6 @@
     - name: Update apt repo and cache on VM
       apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
 
-    - name: Upgrade all packages on VM
-      apt: upgrade=dist force_apt_get=yes
-
     - name: Install Qemu Guest Agent
       apt:
         name: qemu-guest-agent
@@ -64,3 +61,6 @@
         name: "qemu-guest-agent.service"
         enabled: true
         state: started
+
+    - name: Upgrade all packages on VM
+      apt: upgrade=dist force_apt_get=yes
