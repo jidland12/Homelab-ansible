@@ -20,7 +20,7 @@
     - name: Add NFS share to fstab
       lineinfile:
         path: /etc/fstab
-        line: "10.10.4.1:/mnt/DS2246/fs02-MEDIA /plexmedia nfs rw,hard,intr 0 0"
+        line: "10.2.0.5:/mnt/DS2246/fs02-MEDIA /plexmedia nfs rw,hard,intr 0 0"
         state: present
 
     - name: Mount NFS share
@@ -28,7 +28,7 @@
         name: "/plexmedia"
         fstype: nfs
         opts: rw,hard,intr
-        src: 10.10.4.1:/mnt/DS2246/fs02-MEDIA
+        src: 10.2.0.5:/mnt/DS2246/fs02-MEDIA
         state: mounted
         dump: 0
         passno: 0
