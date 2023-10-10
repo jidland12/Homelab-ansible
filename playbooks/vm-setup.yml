@@ -35,6 +35,10 @@
         name: '{{ ip_address }}'
         groups: vm
 
+    - name: "Wait 30 seconds for host to boot"
+      pause:
+        seconds: 40
+
 - hosts: vm
   tasks:
     - name: "test ping"
