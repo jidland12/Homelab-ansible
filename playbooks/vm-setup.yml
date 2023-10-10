@@ -1,0 +1,30 @@
+# Step 1 Clone VM 
+# Step 2 Set Cloud Init Data
+# step 3 power on VM
+# step 4 connect to new VM 
+# step 5 Install initial configurations
+---
+- name: "Create new VM from Clone"
+  hosts: all
+
+  tasks:
+    - name: "Clone VM Template"
+      community.general.proxmox_kvm:
+        api_user: root@pam
+        api_password: {{ pm_passwd }}
+        api_host: "srv01"
+        clone: "Ubuntu-cloudinit-template"
+        name: {{ vm_name }}
+        newid: {{ vm_id }}
+        node: {{ vm_node }}
+        storage: Ceph-pool
+        ipconfig:
+          ipconfig0: "ip={{ ip_address }}/16, gw=10.10.0.1"
+        
+
+
+
+
+# - name: Write the new ec2 instance host key to known hosts
+# connection: local
+# shell: "ssh-keyscan -H {{ inventory_hostname }} >> ~/.ssh/known_hosts"
