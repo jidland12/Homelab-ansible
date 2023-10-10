@@ -40,6 +40,7 @@
         seconds: 40
 
 - hosts: vm
+  remote_user: webadmin
   tasks:
     - name: "test ping"
       ping:
