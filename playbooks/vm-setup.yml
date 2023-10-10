@@ -22,6 +22,7 @@
         storage: Ceph-pool
         ipconfig:
           ipconfig0: "ip={{ ip_address }}/16, gw=10.10.0.1"
+        update: yes
         
 
 
