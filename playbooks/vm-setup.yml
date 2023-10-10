@@ -37,11 +37,17 @@
 
     - name: "Wait 30 seconds for host to boot"
       pause:
-        seconds: 40
+        seconds: 30
 
 - hosts: vm
   remote_user: webadmin
+  gather_facts: no
+
   tasks:
+    - name: Write the new host key to known hosts
+      connection: local
+      shell: "ssh-keyscan -H {{ ip_address }} >> ~/.ssh/known_hosts"
+
     - name: "test ping"
       ping:
     
