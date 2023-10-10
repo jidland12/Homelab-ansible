@@ -13,7 +13,7 @@
 
     - name: "Update Memory"
       command: "qm set {{ vm_id }} --memory {{ memory }}"
-      when: memory > 1023
+      when: memory is defined
 
     - name: "Update Cloud Init"
       command: "qm cloudinit update {{ vm_id }} "
