@@ -25,7 +25,7 @@
 
     - name: "Migrate VM"
       command: "qm migrate {{ vm_id | int }} {{ vm_node }} --online"
-      when:
+      when: vm_node != "srv01"
 
     - name: "Add new host" 
       add_host:
