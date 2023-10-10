@@ -28,6 +28,7 @@
         api_password: "{{ pm_passwd }}"
         api_host: "srv01"
         vmid: "{{ vm_id | int }}"
+        node: "{{ vm_node }}"
         ipconfig:
           ipconfig0: "ip={{ ip_address }}/16, gw=10.10.0.1"
         update: yes
