@@ -1,0 +1,16 @@
+---
+- name: Install Qemu Guest Agent
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install Qemu Guest Agent
+      apt:
+        name: qemu-guest-agent
+        state: present
+
+    - name: Enable and Start Qemu Guest Agent
+      service:
+        name: "qemu-guest-agent.service"
+        enabled: true
+        state: started
