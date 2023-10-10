@@ -6,10 +6,10 @@
 
   tasks:
     - name: "Clone VM Template"
-      command: "qm clone 9991 {{ vm_id }} --name {{ vm_name }} --full true --description {{ vm_name }}"
+      command: "qm clone 9991 {{ vm_id }} --name {{ vm_name }} --full true --description {{ vm_name }}" # Change base VMID or make it a variable
 
     - name: "Update IP Address"
-      command: "qm set {{ vm_id }} --ipconfig0 \"ip={{ ip_address }}/16,gw=10.10.0.1\""
+      command: "qm set {{ vm_id }} --ipconfig0 \"ip={{ ip_address }}/16,gw=10.10.0.1\"" # Change to match network configuration
 
     - name: "Update Memory"
       command: "qm set {{ vm_id }} --memory {{ memory }}"
@@ -36,6 +36,12 @@
     - name: "Wait 30 seconds for host to boot"
       pause:
         seconds: 30
+
+###################################
+#                                 #
+#     INTIAL VM CONFIGURATION     #
+#                                 #
+###################################
 
 - hosts: vm
   remote_user: webadmin
@@ -66,3 +72,9 @@
         name: "qemu-guest-agent.service"
         enabled: true
         state: started
+
+#####################################
+#                                   #
+#      ADDITIONAL CONFIGURATION     #
+#                                   #
+#####################################
