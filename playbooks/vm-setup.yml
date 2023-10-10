@@ -24,11 +24,11 @@
     - name: "Update IP Address"
       command: "qm set {{ vm_id | int }} --ipconfig0 \"ip={{ ip_address }}/16,gw=10.10.0.1\""
 
-    - name: "Migrate VM"
-      command: "qm migrate {{ vm_id | int }} {{ vm_node }}"
-
     - name: "Start host"
       command: "qm start {{ vm_id | int }}"
+
+    - name: "Migrate VM"
+      command: "qm migrate {{ vm_id | int }} {{ vm_node }}"
 
     - name: "Add new host" 
       add_host:
