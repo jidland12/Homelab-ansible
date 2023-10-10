@@ -27,6 +27,9 @@
     - name: "Migrate VM"
       command: "qm migrate {{ vm_id | int }} {{ vm_node }}"
 
+    - name: "Start host"
+      command: "qm start {{ vm_id | int }}"
+
     - name: "Add new host" 
       add_host:
         name: '{{ ip_address }}'
