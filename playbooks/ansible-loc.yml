@@ -2,6 +2,7 @@
 - name: "Create new VM from Clone"
   hosts: all
 
-- name: "show the value"
-  debug:
-    var: ansible_config_file
+  tasks:
+    - name: "show the value"
+      debug:
+        var: ansible_config_file
