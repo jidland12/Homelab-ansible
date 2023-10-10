@@ -20,6 +20,10 @@
     - name: "Update IP Address"
       command: "qm set {{ vm_id | int }} --ipconfig0 \"ip={{ ip_address }}/16,gw=10.10.0.1\""
 
+    - name: "Update Memory"
+      command: "qm set {{ vm_id | int }} --memory {{ memory | int }}"
+      when: memory > 1023
+
     - name: "Start host"
       command: "qm start {{ vm_id | int }}"
 
