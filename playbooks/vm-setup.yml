@@ -14,10 +14,11 @@
         api_password: "{{ pm_passwd }}"
         api_host: "srv01"
         clone: "Ubuntu-cloudinit-template"
+        node: "srv01"
         vmid: 9991
         name: "{{ vm_name }}"
         newid: "{{ vm_id | int }}"
-        node: "srv01"
+        target: "{{ vm_node }}"
         storage: Ceph-pool
         ipconfig:
           ipconfig0: "ip={{ ip_address }}/16, gw=10.10.0.1"
