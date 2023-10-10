@@ -28,7 +28,7 @@
       command: "qm start {{ vm_id | int }}"
 
     - name: "Migrate VM"
-      command: "qm migrate {{ vm_id | int }} {{ vm_node }}"
+      command: "qm migrate {{ vm_id | int }} {{ vm_node }} --online"
 
     - name: "Add new host" 
       add_host:
