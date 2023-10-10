@@ -5,7 +5,7 @@
 # step 5 Install initial configurations
 ---
 - name: "Create new VM from Clone"
-  hosts: hyoer
+  hosts: hyper
   gather_facts: no
 
   tasks:
