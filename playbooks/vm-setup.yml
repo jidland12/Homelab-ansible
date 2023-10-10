@@ -14,6 +14,7 @@
         api_password: "{{ pm_passwd }}"
         api_host: "srv01"
         clone: "Ubuntu-cloudinit-template"
+        vmid: 9991
         name: "{{ vm_name }}"
         newid: "{{ vm_id | int }}"
         node: "{{ vm_node }}"
