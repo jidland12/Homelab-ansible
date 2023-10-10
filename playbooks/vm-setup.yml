@@ -6,6 +6,7 @@
 ---
 - name: "Create new VM from Clone"
   hosts: all
+  gather_facts: no
 
   tasks:
     - name: "Clone VM Template"
@@ -26,6 +27,7 @@
         api_user: root@pam
         api_password: "{{ pm_passwd }}"
         api_host: "srv01"
+        vmid: "{{ vm_id | int }}"
         ipconfig:
           ipconfig0: "ip={{ ip_address }}/16, gw=10.10.0.1"
         update: yes
