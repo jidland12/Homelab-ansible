@@ -5,7 +5,7 @@
 # step 5 Install initial configurations
 ---
 - name: "Create new VM from Clone"
-  hosts: all
+  hosts: hyoer
   gather_facts: no
 
   tasks:
@@ -26,6 +26,18 @@
 
     - name: "Migrate VM"
       command: "qm migrate {{ vm_id | int }} {{ vm_node }}"
+
+    - name: "Add new host" 
+      add_host:
+        name: '{{ ip_address }}'
+        groups: vm
+
+- hosts: vm
+  tasks:
+    - name: "test ping"
+      ping:
+    
+
 
 
 
