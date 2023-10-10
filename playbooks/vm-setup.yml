@@ -6,32 +6,26 @@
 
   tasks:
     - name: "Clone VM Template"
-      community.general.proxmox_kvm:
-        api_user: root@pam
-        api_password: "{{ pm_passwd }}"
-        api_host: "srv01"
-        clone: "Ubuntu-cloudinit-template"
-        node: "srv01"
-        vmid: 9991
-        name: "{{ vm_name }}"
-        newid: "{{ vm_id | int }}"
-        storage: Ceph-pool
-        
+      command: "qm clone 9991 {{ vm_id }} --name {{ vm_name }} --full true --description {{ vm_name }}"
+
     - name: "Update IP Address"
-      command: "qm set {{ vm_id | int }} --ipconfig0 \"ip={{ ip_address }}/16,gw=10.10.0.1\""
+      command: "qm set {{ vm_id }} --ipconfig0 \"ip={{ ip_address }}/16,gw=10.10.0.1\""
 
     - name: "Update Memory"
-      command: "qm set {{ vm_id | int }} --memory {{ memory | int }}"
+      command: "qm set {{ vm_id }} --memory {{ memory }}"
       when: memory > 1023
 
+    - name: "Update Cloud Init"
+      command: "qm cloudinit update {{ vm_id }} "
+
     - name: "Start host"
-      command: "qm start {{ vm_id | int }}"
+      command: "qm start {{ vm_id }}"
 
     - name: "Add VM to HA Manager"
-      command: "ha-manager add {{ vm_id | int }} --state started"
+      command: "ha-manager add {{ vm_id }} --state started"
 
     - name: "Migrate VM"
-      command: "qm migrate {{ vm_id | int }} {{ vm_node }} --online"
+      command: "qm migrate {{ vm_id }} {{ vm_node }} --online"
       when: vm_node != "srv01"
 
     - name: "Add new host" 
