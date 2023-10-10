@@ -23,7 +23,7 @@
         storage: Ceph-pool
         
     - name: "Update IP Address"
-      command: "qm set {{ vm_id | int }} --ipconfig0 "ip={{ ip_address }}/16,gw=10.10.0.1""
+      command: "qm set {{ vm_id | int }} --ipconfig0 \"ip={{ ip_address }}/16,gw=10.10.0.1\""
 
 
 
