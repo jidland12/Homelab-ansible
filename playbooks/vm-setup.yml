@@ -23,6 +23,9 @@
     - name: "Start host"
       command: "qm start {{ vm_id | int }}"
 
+    - name: "Add VM to HA Manager"
+      command: "ha-manager add {{ vm_id | int }} --state started"
+
     - name: "Migrate VM"
       command: "qm migrate {{ vm_id | int }} {{ vm_node }} --online"
       when: vm_node != "srv01"
